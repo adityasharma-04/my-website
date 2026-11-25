@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multiverse Marathon</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#f4f0ff;--surface:#fff;--text:#1d1238;--muted:#5d5083;--line:#d9cff5;--a:#d6247f;--b:#0b9c84;--btn:#1d1238;--btnt:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1033;--surface:#2a1a4d;--text:#f3ecff;--muted:#b8a8e0;--line:#43307a;--a:#ff4fa3;--b:#3ee6c4;--btn:#f3ecff;--btnt:#1b1033}}
+:root[data-theme="dark"]{--bg:#1b1033;--surface:#2a1a4d;--text:#f3ecff;--muted:#b8a8e0;--line:#43307a;--a:#ff4fa3;--b:#3ee6c4;--btn:#f3ecff;--btnt:#1b1033}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-weight:800;font-size:1.2rem;letter-spacing:-.02em;text-decoration:none}
+.logo i{font-style:normal;color:var(--a)}
+.tbtn{background:none;border:1px solid var(--line);color:var(--text);border-radius:99px;padding:6px 14px;font:inherit;cursor:pointer}
+.hero{padding:48px 0 36px;position:relative}
+.hero h1{font-size:clamp(3rem,10vw,7.5rem);line-height:.9;letter-spacing:-.045em;font-weight:800;margin:0 0 20px}
+.hero h1 span{display:block;margin-left:clamp(0px,6vw,90px);color:transparent;-webkit-text-stroke:2px var(--a)}
+.hero p{max-width:52ch;color:var(--muted);font-size:1.1rem;margin:0 0 26px}
+.cd{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cd div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 14px;min-width:74px;text-align:center}
+.cd b{display:block;font-size:1.6rem;line-height:1.1}
+.cd small{color:var(--muted)}
+.cd .lbl{border:0;background:none;text-align:left;padding:0 6px;color:var(--muted)}
+.bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:18px 0;border-top:1px solid var(--line)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.seg button{border:0;background:none;color:var(--text);padding:8px 16px;font:inherit;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--btn);color:var(--btnt)}
+input[type=search]{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:99px;padding:9px 16px;font:inherit;min-width:220px}
+.prog{padding:0 0 22px}
+.prog p{margin:0 0 8px;color:var(--muted)}
+.track{height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:width .4s}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px;padding-bottom:50px;list-style:none;margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card.done{opacity:.6}
+.poster{aspect-ratio:2/3;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;position:relative}
+.poster em{font-style:normal;font-weight:800;font-size:2.6rem;opacity:.9;letter-spacing:-.04em}
+.poster h2{font-size:1.35rem;line-height:1.05;margin:0;font-weight:800;letter-spacing:-.02em;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.meta{color:var(--muted);font-size:.85rem}
+.why{font-size:.92rem;margin:0}
+.acts{display:flex;gap:8px;margin-top:auto;padding-top:6px;flex-wrap:wrap}
+.acts button,.acts a{font:inherit;font-size:.88rem;border-radius:99px;padding:6px 12px;cursor:pointer;text-decoration:none;border:1px solid var(--line);background:none;color:var(--text)}
+.acts button[aria-pressed="true"]{background:var(--b);border-color:var(--b);color:#10231f}
+.empty{padding:40px 0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:.88rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="logo" href="#">Multiverse<i>Marathon</i></a>
+  <button class="tbtn" id="theme" type="button">Switch theme</button>
+</header>
+
+<section class="hero">
+  <h1>Multiverse <span>Marathon</span></h1>
+  <p>Every film worth watching before Avengers: Doomsday, in the right order. Tick off each one as you go and see where it streams.</p>
+  <div class="cd" id="cd" aria-label="Countdown to Avengers: Doomsday"></div>
+</section>
+
+<div class="bar">
+  <div class="seg" role="group" aria-label="Watch order">
+    <button type="button" id="o-rel" aria-pressed="true">Release order</button>
+    <button type="button" id="o-story" aria-pressed="false">Story order</button>
+  </div>
+  <input type="search" id="q" placeholder="Search films" aria-label="Search films">
+</div>
+
+<div class="prog">
+  <p id="ptext">0 of 15 watched</p>
+  <div class="track"><div class="fill" id="fill"></div></div>
+</div>
+
+<ul class="grid" id="grid"></ul>
+<p class="empty" id="empty" hidden>No films match that search. Clear the box to see the full list.</p>
+
+<footer>
+  Multiverse Marathon is a fan guide. It doesn’t host any films. Links go to JustWatch, which shows the legal services carrying each title in your country. Marvel and all film titles belong to their owners. This product uses the TMDB API but is not endorsed or certified by TMDB.
+</footer>
+</div>
+
+<script>
+var FILMS=[
+{t:"Iron Man",y:2008,m:126,r:2,h:280,w:"Where it all starts. Tony Stark’s first suit and the seed of the Avengers."},
+{t:"Captain America: The First Avenger",y:2011,m:124,r:1,h:210,w:"Introduces Steve Rogers and the Tesseract, the first Infinity Stone you meet."},
+{t:"The Avengers",y:2012,m:143,r:3,h:330,w:"The team forms. Sets up Loki, the Chitauri and Thanos."},
+{t:"Captain America: The Winter Soldier",y:2014,m:136,r:4,h:250,w:"Rewrites the Avengers’ world and defines Steve and Bucky’s bond."},
+{t:"Avengers: Age of Ultron",y:2015,m:141,r:5,h:350,w:"The team fractures and the Mind Stone gets its story."},
+{t:"Captain America: Civil War",y:2016,m:147,r:6,h:20,w:"The Avengers split in two, and the fallout lasts for years."},
+{t:"Doctor Strange",y:2016,m:115,r:7,h:265,w:"Brings in magic, the Time Stone and the idea of other dimensions."},
+{t:"Thor: Ragnarok",y:2017,m:130,r:8,h:150,w:"Asgard falls and Thor’s path leads straight into Infinity War."},
+{t:"Black Panther",y:2018,m:134,r:9,h:285,w:"Wakanda enters the picture, and you’ll want it fresh for the big fight."},
+{t:"Avengers: Infinity War",y:2018,m:149,r:10,h:310,w:"Thanos makes his move. Essential."},
+{t:"Avengers: Endgame",y:2019,m:181,r:11,h:45,w:"The finale of the Infinity Saga and the clearest look at time travel rules."},
+{t:"Spider-Man: No Way Home",y:2021,m:148,r:12,h:0,w:"Cracks the multiverse wide open and brings back faces from other worlds."},
+{t:"Doctor Strange in the Multiverse of Madness",y:2022,m:126,r:13,h:330,w:"Explains how universes collide, with incursions as the main threat."},
+{t:"Thunderbolts*",y:2025,m:127,r:14,h:35,w:"A scrappy team of antiheroes and the newest MCU line-up."},
+{t:"The Fantastic Four: First Steps",y:2025,m:115,r:15,h:200,w:"A different universe’s heroes, and a big piece of the road to Doomsday."}
+];
+var TMDB_KEY="PASTE_YOUR_TMDB_API_KEY_HERE",posters={};
+function loadPosters(){
+  if(TMDB_KEY.indexOf("PASTE")===0)return;
+  Promise.all(FILMS.map(function(f){
+    return fetch("https://api.themoviedb.org/3/search/movie?api_key="+TMDB_KEY+"&year="+f.y+"&query="+encodeURIComponent(f.t.replace("*","")))
+    .then(function(r){return r.json()})
+    .then(function(d){var p=d.results&&d.results[0]&&d.results[0].poster_path;if(p)posters[f.t]="https://image.tmdb.org/t/p/w342"+p})
+    .catch(function(){});
+  })).then(render);
+}
+var KEY="mm-watched",order="rel",done={};
+try{var s=localStorage.getItem(KEY);if(s)done=JSON.parse(s)||{}}catch(e){done={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
+var grid=document.getElementById("grid"),q=document.getElementById("q");
+function render(){
+  var term=q.value.trim().toLowerCase();
+  var list=FILMS.slice();
+  if(order==="rel")list.sort(function(a,b){return a.y-b.y||a.r-b.r});
+  else list.sort(function(a,b){return a.r-b.r});
+  grid.innerHTML="";var n=0;
+  list.forEach(function(f,i){
+    if(term&&f.t.toLowerCase().indexOf(term)<0)return;
+    n++;
+    var d=!!done[f.t];
+    var li=document.createElement("li");li.className="card"+(d?" done":"");
+    var url="https://www.justwatch.com/in/search?q="+encodeURIComponent(f.t);
+    li.innerHTML='<div class="poster" style="background:linear-gradient(160deg,hsl('+f.h+',70%,38%),hsl('+((f.h+60)%360)+',65%,22%))"><em>'+(i+1)+'</em><h2></h2></div>'+
+    '<div class="body"><div class="meta">'+f.y+' · '+Math.floor(f.m/60)+'h '+(f.m%60)+'m</div><p class="why"></p><div class="acts"><button type="button" aria-pressed="'+d+'">'+(d?"Watched":"Mark watched")+'</button><a href="'+url+'" target="_blank" rel="noopener">Where to watch</a></div></div>';
+    li.querySelector("h2").textContent=f.t;
+    if(posters[f.t]){li.querySelector(".poster").style.background="linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,0) 55%),url("+posters[f.t]+") center/cover"}
+    li.querySelector(".why").textContent=f.w;
+    li.querySelector("button").onclick=function(){if(done[f.t])delete done[f.t];else done[f.t]=1;save();render()};
+    grid.appendChild(li);
+  });
+  document.getElementById("empty").hidden=n>0;
+  var c=FILMS.filter(function(f){return done[f.t]}).length;
+  document.getElementById("ptext").textContent=c+" of "+FILMS.length+" watched";
+  document.getElementById("fill").style.width=(c/FILMS.length*100)+"%";
+}
+function setOrder(o){order=o;document.getElementById("o-rel").setAttribute("aria-pressed",o==="rel");document.getElementById("o-story").setAttribute("aria-pressed",o==="story");render()}
+document.getElementById("o-rel").onclick=function(){setOrder("rel")};
+document.getElementById("o-story").onclick=function(){setOrder("story")};
+q.oninput=render;
+document.getElementById("theme").onclick=function(){
+  var r=document.documentElement,dark=r.getAttribute("data-theme")?r.getAttribute("data-theme")==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  r.setAttribute("data-theme",dark?"light":"dark");
+};
+function tick(){
+  var t=new Date("2026-12-18T00:00:00").getTime()-Date.now(),el=document.getElementById("cd");
+  if(t<=0){el.innerHTML='<span class="lbl">Avengers: Doomsday is out. Time to watch.</span>';return}
+  var d=Math.floor(t/864e5),h=Math.floor(t%864e5/36e5),m=Math.floor(t%36e5/6e4);
+  el.innerHTML='<span class="lbl">Doomsday in</span><div><b>'+d+'</b><small>days</small></div><div><b>'+h+'</b><small>hours</small></div><div><b>'+m+'</b><small>mins</small></div>';
+}
+tick();setInterval(tick,30000);render();loadPosters();
+</script>
+</body>
+</html>
